@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AppSeries</title>
+    <link rel="stylesheet" href="../style/style.css">
+</head>
+<body>
+    <main class="container">
+        <h2 id="titulo-form">Recomendar una Serie</h2>
+        <form id="form-serie">
+            <!-- vacío = INSERT, con valor = UPDATE -->
+            <input type="hidden" id="serie-id" value="">
+
+            <input type="text" id="titulo" placeholder="Título" required>
+
+            <select id="genero" required>
+                <option value="">Género</option>
+                <option>Drama</option>
+                <option>Comedia</option>
+                <option>Acción</option>
+                <option>Ciencia Ficción</option>
+                <option>Terror</option>
+                <option>Animación</option>
+            </select>
+
+            <input type="number" id="puntuacion" min="0" max="10" step="0.1" placeholder="Puntuación (0-10)" required>
+            <textarea id="resena" placeholder="Reseña" required></textarea>
+            <input type="file" id="imagen-file" accept="image/*" required>
+
+            <button type="submit" id="btn-submit">Publicar Recomendación</button>
+            <button type="button" id="btn-cancelar" hidden>Cancelar edición</button>
+        </form>
+
+        <section class="catalog-section">
+            <div id="grid-series" class="grid-cards"></div>
+        </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../js/supabaseClient.js"></script>
+    <script src="../js/series.js"></script>
+</body>
+</html>

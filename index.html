@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#07070f">
+    <title>AppSeries | Ingresar</title>
+    <link rel="manifest" href="manifest.json">
+    <style>
+        :root {
+            --bg: #07070f;
+            --panel: #0d0d1a;
+            --cian: #00f0ff;
+            --magenta: #ff2bd6;
+            --texto: #e8f7ff;
+            --tenue: #7f8aa3;
+            --error: #ff5c7a;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: grid;
+            place-items: center;
+            padding: 1.5rem;
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+            color: var(--texto);
+            background:
+                radial-gradient(circle at 15% 20%, rgba(0, 240, 255, 0.12), transparent 40%),
+                radial-gradient(circle at 85% 80%, rgba(255, 43, 214, 0.14), transparent 40%),
+                var(--bg);
+        }
+
+        .neon-card {
+            width: 100%;
+            max-width: 400px;
+            padding: 2.25rem 2rem;
+            border-radius: 16px;
+            background: var(--panel);
+            border: 1px solid var(--cian);
+            box-shadow:
+                0 0 12px rgba(0, 240, 255, 0.45),
+                0 0 40px rgba(0, 240, 255, 0.18),
+                inset 0 0 24px rgba(0, 240, 255, 0.06);
+        }
+
+        .neon-title {
+            margin: 0 0 0.25rem;
+            text-align: center;
+            font-size: 2rem;
+            letter-spacing: 0.08em;
+            color: var(--texto);
+            text-shadow:
+                0 0 6px var(--cian),
+                0 0 18px var(--cian),
+                0 0 36px var(--magenta);
+        }
+
+        .neon-sub {
+            margin: 0 0 1.75rem;
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--tenue);
+        }
+
+        .neon-form { display: flex; flex-direction: column; gap: 1rem; }
+
+        .neon-label { display: flex; flex-direction: column; gap: 0.35rem; font-size: 0.85rem; color: var(--tenue); }
+
+        .neon-input {
+            padding: 0.75rem 0.9rem;
+            font-size: 1rem;
+            color: var(--texto);
+            background: #080814;
+            border: 1px solid #2a2a45;
+            border-radius: 10px;
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .neon-input:focus {
+            border-color: var(--magenta);
+            box-shadow: 0 0 10px rgba(255, 43, 214, 0.55);
+        }
+
+        .neon-btn {
+            padding: 0.8rem 1rem;
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            color: var(--cian);
+            background: transparent;
+            border: 1px solid var(--cian);
+            border-radius: 10px;
+            text-shadow: 0 0 8px var(--cian);
+            box-shadow: 0 0 10px rgba(0, 240, 255, 0.4);
+            transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+        }
+
+        .neon-btn:hover,
+        .neon-btn:focus-visible {
+            color: var(--bg);
+            background: var(--cian);
+            text-shadow: none;
+            box-shadow: 0 0 22px rgba(0, 240, 255, 0.8);
+            outline: none;
+        }
+
+        .neon-links { margin-top: 1.25rem; text-align: center; font-size: 0.85rem; color: var(--tenue); }
+        .neon-links a { color: var(--magenta); text-decoration: none; text-shadow: 0 0 8px rgba(255, 43, 214, 0.6); }
+        .neon-links a:hover { text-decoration: underline; }
+
+        @media (prefers-reduced-motion: no-preference) {
+            .neon-title { animation: parpadeo 6s infinite; }
+            @keyframes parpadeo {
+                0%, 92%, 100% { opacity: 1; }
+                94% { opacity: 0.55; }
+                96% { opacity: 1; }
+                98% { opacity: 0.7; }
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="neon-card">
+        <h1 class="neon-title">AppSeries</h1>
+        <p class="neon-sub">Recomendá y descubrí series</p>
+
+        <form id="form-login" class="neon-form" novalidate>
+            <label class="neon-label">
+                Email
+                <input class="neon-input" type="email" id="login-email" placeholder="tu@email.com" required autocomplete="email">
+            </label>
+
+            <label class="neon-label">
+                Contraseña
+                <input class="neon-input" type="password" id="login-password" placeholder="••••••••" required autocomplete="current-password">
+            </label>
+
+            <button type="submit" class="neon-btn">INGRESAR</button>
+        </form>
+
+        <p class="neon-links">
+            ¿No tenés cuenta? <a href="src/views/register.html">Registrate</a>
+        </p>
+    </main>
+
+    <script>
+        const DESTINO = 'src/views/nueva-serie.html';
+        const form = document.getElementById('form-login');
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            if (!form.reportValidity()) return;
+            window.location.href = DESTINO;
+        });
+    </script>
+</body>
+</html>
